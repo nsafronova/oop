@@ -12,17 +12,17 @@ const DomElement = function (selector) {
 
          if (this.selector.charAt(0) === '.') {
             let elem = document.createElement('div');
-            elem.classList.add(input.value.slice(1));
-            elem.style.cssText = 'height: 50px; width: 50px; font-size: 20px; background: blue';
-            console.log(elem);
-            document.querySelector('div').innerHTML = '<div>' + input.value.slice(1) + '</div>';
+            elem.className = input.value.slice(1);
+            elem.innerHTML = input.value.slice(1);
+            document.body.append(elem);
+            elem.style.cssText = ' font-size: 20px; background: #7B68EE;';
 
          } else if (this.selector.charAt(0) === '#') {
             const p = document.createElement('p');
             p.id = input.value.slice(1);
-            p.style.color = 'height: 50px; width: 50px; font-size: 20px; background: blue;';
-            console.log(p);
-            document.querySelector('p').innerHTML = '<p>' + input.value.slice(1) + '</p>';
+            document.body.append(p);
+            p.style.cssText = 'font-size: 40px; background: #98FB98;';
+            document.querySelector('p').innerHTML = input.value.slice(1);
 
          } else {
             console.log('Неверный символ!');
@@ -32,10 +32,7 @@ const DomElement = function (selector) {
 
 todoControl.addEventListener('submit', function (event) {
    event.preventDefault();
-   console.log(input.value);
    const text1 = new DomElement(input.value);
-
-   console.log(text1);
 
    text1.createElement();
 });
